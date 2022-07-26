@@ -2,7 +2,7 @@ import React from 'react'
 import { useQuery, gql } from "@apollo/client"
 
 function GetLaunchesQuery() {
-  const launchesQuery = gql `
+  const LAUNCHESQUERY = gql `
     query GetLaunches {
         launches {
             id
@@ -12,7 +12,7 @@ function GetLaunchesQuery() {
         }
     }`;
 
-  const { loading, error, data } = useQuery(launchesQuery);
+  const { loading, error, data } = useQuery(LAUNCHESQUERY);
   if(loading) return <p>Loading.....</p>;
   if(error) return <p>Error: {error}</p>;
 
