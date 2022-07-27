@@ -2,31 +2,28 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import GetLaunchesQuery from './graphqlQueries/GetLaunchesQuery';
 import GetParticularLaunch from './graphqlQueries/GetParticularLaunch';
+import { makeVar, useReactiveVar } from "@apollo/client";
+
+export const testReactiveVar = makeVar("");
 
 function App() {
 
   const [showLaunches, setShowLaunches] = useState(false);
-  const [launchId, setlaunchId] = useState("");
+  const [showSingleLaunch, setShowSingleLaunch] = useState(false);
 
   const toggleMissionView = () => {
     setShowLaunches(showLaunches => !showLaunches);
   }
 
-  const particularLaunchCheck = () => {
-    if(launchId === "") {
-      return <p>Insert a number between 1 and 30 and we can get cracking</p>
-    }
-    return (
-      <GetParticularLaunch 
-      id={launchId}
-      />
-    )
+  const launchIdChosen = (event) => {
+    testReactiveVar(event.target.value);
+    setShowSingleLaunch(true);
   }
 
-  useEffect(() => {
-    particularLaunchCheck();
-  });
-
+  const findOtherLaunch = () => {
+    setShowSingleLaunch(false);
+    document.getElementById('launchIdInput').value = '';
+  }
 
   return (
     <div className="App">
@@ -40,10 +37,15 @@ function App() {
       }
       <div className={'particularLaunchFinder'}>
         <p>Pick a number between 1 and 30 to see a particular launch</p>
-        <input onInput={e => setlaunchId(e.target.value)} type="text"/>
-        <button>Lets find this launch</button>
+        <input id={'launchIdInput'} onInput={e => launchIdChosen(e)} type="text"/>
+        <button onClick={findOtherLaunch}>Try Another</button>
       </div>
-      {particularLaunchCheck()}
+      {
+          showSingleLaunch ? 
+          <p><GetParticularLaunch /></p> 
+          : 
+          <p>Waiting...</p>
+        }
     </div>
   );
 }

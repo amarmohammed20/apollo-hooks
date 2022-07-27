@@ -1,5 +1,6 @@
-import React from 'react'
-import { useQuery, gql } from "@apollo/client"
+import React from 'react';
+import { useQuery, gql } from "@apollo/client";
+import '../App.css';
 
 function GetLaunchesQuery() {
   const LAUNCHESQUERY = gql `
@@ -24,7 +25,8 @@ function GetLaunchesQuery() {
         {
           data.launches.map((launch) => {
             return (
-            <div key={launch.id}>
+            <div className='launchesInfo' key={launch.id}>
+            <p>Launch ID - {launch.id}</p>
             <p>Mission name - {launch.mission_name}</p>
             </div>
             )
