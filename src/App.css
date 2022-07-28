@@ -1,13 +1,12 @@
 .App {
   text-align: center;
+  margin: 10px 30px 10px 30px;
 }
 
 .particularLaunchFinder {
-  color: blue;
-  display: flex;
-  justify-content: center;
-  border: solid 3px black;
+  border: dashed 2px black;
   padding: 10px 10px 10px 10px;
+  margin-top: 10px;
 }
 
 .particularLaunchFinder p {
@@ -27,4 +26,16 @@
 
 .launchesInfo  p {
   padding: 0px 10px 0px 0px;
+}
+
+.useQueryInfo {
+  border: dashed 2px grey;
+  padding: 10px 10px 10px 10px;
+  margin-top: 10px;
+}
+
+.useReactiveVarSection {
+  border: solid 2px rgb(117, 117, 169);
+  padding: 10px 10px 10px 10px;
+  margin-top: 10px;
 }
